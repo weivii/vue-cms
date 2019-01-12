@@ -112,6 +112,8 @@ export default {
                 
                 position:relative;
                 margin-bottom:10px;
+                text-align: center;
+                background-color: #ccc;
                  img {
                     width: 100%;
                     vertical-align: middle;
