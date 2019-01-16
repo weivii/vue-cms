@@ -1,5 +1,6 @@
 <template>
     <div class="goodInfo-container">
+        <div class="ball"></div>
        <div class="mui-card">
             <!--内容区-->
             <div class="mui-card-content swaper">
@@ -23,8 +24,19 @@
                 </p>
                 <div class="sell">
                    购买数量：
-                    <div>
-                        <input type="text">
+                    <div class="mux-box">
+                        <input 
+                        type="button" 
+                        value="-"
+                        @click="buyCount>1&&buyCount--"
+                        :disabled="buyCount<1">
+                        <input type="text" v-model="buyCount">
+                        <input 
+                        type="button" 
+                        value="+" 
+                        @click="buyCount<info.stock_quantity&&buyCount++"
+                        :disabled="buyCount>=info.stock_quantity"
+                        >
                     </div>
                 </div>
                 <p>
@@ -58,6 +70,7 @@ export default {
            id:this.$route.params.id,
            LunBo:[],
            info:{},
+           buyCount:1
         }
     },
     created(){
@@ -126,7 +139,32 @@ export default {
   }
   .sell{
       margin:10px 0;
+      .mux-box{
+          position: relative;
+      display: inline-block;
+    //   overflow: hidden;
+      width: 220px;
+      height: 35px;
+      input[type="text"] {
+        width: 65px;
+        height:35px;
+        text-align: center;
+      }
+      input[type="button"] {
+        width: 40px;
+        height: 100%;
+      }
+      }
   }
-
+.ball{
+    width:15px;
+    height:15px;
+    background-color: red;
+    border-radius:50%;
+    position:absolute;
+    top:414px;
+    left:165px;
+    z-index:99
+}
 }
 </style>
